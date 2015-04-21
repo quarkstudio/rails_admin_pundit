@@ -29,7 +29,7 @@ module RailsAdmin
         def authorize(action, abstract_model = nil, model_object = nil)
           record = model_object || abstract_model && abstract_model.model
           unless policy(record).rails_admin?(action)
-            raise ::Pundit::NotAuthorizedError, "not allowed to #{action} this #{record}"
+            raise ::Pundit::NotAuthorizedError, query: action, record: record
           end
         end
 
